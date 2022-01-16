@@ -6,7 +6,7 @@
 <body>
 <div class="container-fluid mx-auto">
     <!---  Company Motto --->
-    <div class="card border-light mb-3">
+    <div class="card border-light w-75">
   <div class="row g-0">
     <div class="col-md-6 rounded-pill" style="width:270px">
       <img src="{{ site.baseurl }}/assets/images/brandmotto.jpg" class="img-thumbnail rounded-start" alt="brandicon">
@@ -21,7 +21,28 @@
   </div>
   </div>
     <!---  End of Company Motto --->
-</div>
+
+     <!---  Our Services  --->
+    <h4 class="card-title font-italic fs-2">Our Services</h4>
+    <div class="row row-cols-1 row-cols-md-3">
+        {% assign collection = site.collections | where: "label", "Services" | first %}
+        {% for node in collection.docs  %}
+        {% assign image_source_length =  node.imgsrc | size  %}
+        <div class="col mb-4">
+          <div class="card bg-dark   text-white text-center  p-1">
+              {% if image_source_length  > 0 %}
+                <img src="{{ site.baseurl }}/assets/images/{{ node.imgsrc }}" class="card-img-top img-thumbnail" alt="{{ node.title }}">
+              {% endif %}
+            <div class="card-img-overlay text-center">
+                <h6 class="card-title"><a href="{{ site.baseurl }}{{ node.url }}" class="link-light">{{ node.title }}</a></h6>
+                <!--- <p class="card-text d-none d-lg-block">  {{ node.content }}  </p> -->
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!---  End Our Services  --->
  {%- include footer.html -%}
+</div>
 </body>
 </html>
