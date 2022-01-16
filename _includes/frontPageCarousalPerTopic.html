@@ -1,0 +1,59 @@
+<!-- Comment: Column with Top Pages for Reference -->
+{% assign slide_num = 0 %}
+{% assign featured_post_active_set = "notset" %}
+<div id="FeaturesPostCarousel" class="carousel slide" data-bs-ride="carousel">
+    {% assign featured_post_active_set = "notset" %}                <!-- Comment: To make decision for settign first slide active -->
+    <!----------------------- Comment: Section to assign the button to slide carousel ----------------------------------->
+    <div class="carousel-indicators">
+        {% for collection_variable in site.collections %} 
+            {% for node in collection_variable.docs %}
+                {% if node.featured contains "true" %}
+                    {% if  featured_post_active_set == "notset" %}
+                        {% assign featured_post_active_set = "set" %}
+                        <button type="button"  data-bs-target="#FeaturesPostCarousel" data-bs-slide-to={{ slide_num }} class="active" aria-current="true" aria-label="Slide "{{ slide_num }}></button>
+                    {% else %}
+                        <button type="button"  data-bs-target="#FeaturesPostCarousel" data-bs-slide-to={{ slide_num }} aria-label="Slide "{{ slide_num }}></button>
+                    {% endif %}
+                {% assign slide_num = slide_num | plus: 1 %}
+                {% endif %}
+            {% endfor %}      
+        {% endfor %} 
+    </div>
+    <div class="carousel-inner"  >
+        <!----------------------- Comment: Assigning image and caption to carousel slides ----------------------------------->
+        {% assign featured_post_active_set = "notset" %}               <!-- Comment: To make decision for settign first slide active -->
+        {% for collection_variable in site.collections %}  
+            {% for node in collection_variable.docs  %}
+                {% if node.featured contains "true" %}
+                    "{{ node.url }}"
+                    {% if  featured_post_active_set == "notset" %}
+                        {% assign featured_post_active_set = "set" %}
+                        <div class="carousel-item active" data-bs-interval="10000">
+                            <img src="{{ site.baseurl }}/assets/images/{{ node.imgsrc }}" class="d-block w-auto" alt="{{ node.title }}">
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5> <a href="{{ site.baseurl }}{{ node.url }}"> {{ node.title }} </a> </h5>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="carousel-item" data-bs-interval="10000">
+                            <img src="{{ site.baseurl }}/assets/images/{{ node.imgsrc }}" class="d-block w-auto" alt={{ node.title }}>
+                            <div class="carousel-caption d-none d-md-block">
+                            <h5> <a href="{{ site.baseurl }}{{ node.url }}"> {{ node.title }} </a> </h5>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#FeaturesPostCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#FeaturesPostCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+

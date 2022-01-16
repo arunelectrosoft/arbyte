@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+ {%- include head_navexpanded.html -%}
+</head>
+    <body>
+    <p class="font-weight-bold"> <h3> {{ page.topic | escape }} </h3> </p>  
+    <div class="px-4" >
+    <table class="table table-hover  ">
+            <thead class="thead-dark">
+            </thead>
+            <tbody>
+                    {% assign collection = site.collections | where: "label",page.topic | first %}
+                    {% for node in collection.docs reversed %}
+                    <tr>
+                        <td> <a href="{{ site.baseurl }}{{ node.url }}"> {{ node.title }} </a> </td>
+                    </tr>
+                    {% endfor %}       
+            </tbody>
+    </table>
+    </div>
+    {%- include footer.html -%}
+    </body>
+</html>
+ 

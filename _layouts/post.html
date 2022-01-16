@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head> 
+ {%- include head_navexpanded.html -%}
+</head>
+<body>
+{% assign image_source_length =  page.imgsrc | size  %}
+<div class="row" >
+    <div class="card mb-3" >
+        <div class = "row g-0" >
+            <div class ="col-md-4">
+                {% if image_source_length  > 0 %}
+                    <img src="{{ site.baseurl }}/assets/images/{{ page.imgsrc }}" class="card-img-top w-auto" alt="{{ node.title }}">
+                {% endif %}
+            </div>
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{{ site.baseurl }}{{ page.url }}"> {{ page.title }} </a></h5>
+                    <p class="card-text">  {{ page.content }}  </p>
+                </div>
+            </div>
+    </div>
+</div>
+ {%- include footer.html -%}
+</body>
+</html>

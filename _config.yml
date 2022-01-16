@@ -1,0 +1,55 @@
+title: Arbyte Technologies
+email: arun.electrosoft@gmail.com
+description: >- # this means to ignore newlines until "baseurl:"
+  Arbyte is a embedded software company driven by great minded tech experts who strive to create harmony
+  with mother nature and provide quality solutions with greater focus on process and customer delight.
+  We also train young tech savy amateur to a wizards, provides a real life embedded automation field experience.
+
+baseurl:
+# Working baseurl for github.io  baseurl: /TechMemory
+# also url for webpage till in github.io is  url: https://arunelectrosoft.github.io/
+#url: https://www.creativesaplings.com
+url: https://arunelectrosoft.github.io/
+github_username:  arunelectrosoft
+markdown: kramdown
+
+kramdown:
+  syntax_highlighter: coderay
+  syntax_highlighter_opts:
+    line_numbers: table
+    bold_every: 5
+
+collections_dir: siteContents
+collections:
+  Company:
+    output: true
+    permalink: /:collection/:path
+  Services:
+    output: true
+    permalink: /:collection/:path
+  Solutions:
+    output: true
+    permalink: /:collection/:path
+  Research:
+    output: true
+    permalink: /:collection/:path
+  Careers:
+    output: true
+    permalink: /:collection/:path
+  Press:
+    output: true
+    permalink: /:collection/:path
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+sass:
+  sass_dir: assets
+  style: compressed
+
+theme: jekyll-theme-slate

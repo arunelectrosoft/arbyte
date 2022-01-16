@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!---  HTML responsive webpage configuration starting  --->
+<meta name="viewport" content="width=device-width, intial-scale=1.0">
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css">
+{% assign links = site.data.navigation %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{{ site.baseurl }}/index.html">
+  <img src="{{ site.baseurl }}/assets/images/brandicon.png" height="40" alt="ArbyteIcon">
+  </a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse " id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+          <a class="nav-link" href="{{ site.baseurl }}/index.html">Home</a>
+      </li>
+      {% for item in site.data.navigation %}
+      <li class="nav-item" >
+      <a class="nav-link" href= "{{ site.baseurl }}{{ item.url }}" > {{ item.title }} </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>  
+</nav>
+{%- include google-analytics.html -%}

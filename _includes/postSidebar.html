@@ -1,0 +1,22 @@
+{% assign postIDgen = 0 %}
+<div class="accordion" id="postSideBarID">
+        {% for item in site.data.navigation %}
+            <div class="accordion-item">
+            <h2 class="accordion-header" id="item{{ postIDgen }}heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#item{{ postIDgen }}" aria-expanded="false" aria-controls="item{{ postIDgen }}">
+                <a  href= "{{ site.baseurl }}{{ item.url }}" > {{ item.title }}  </a>
+                </button>
+            </h2>
+            <div id="item{{ postIDgen }}" class="accordion-collapse collapse" aria-labelledby="item{{ postIDgen }}heading" data-bs-parent="#postSideBarID">
+                <div class="accordion-body">
+                {% assign collection = site.collections | where: "label", {{item.title}} | first %}
+                {% for node in collection.docs reversed %}
+                <a href="{{ site.baseurl }}{{ node.url }}"> {{ node.title }} </a>
+                <br>
+                {% endfor %}
+                </div>
+            </div>
+            </div>
+        {% assign postIDgen = postIDgen | plus: 1 %}
+        {% endfor %}
+</div>

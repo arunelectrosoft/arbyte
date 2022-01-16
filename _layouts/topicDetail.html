@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+ {%- include head_navexpanded.html -%}
+</head>
+    <body>
+    <div class="container-fluid mx-auto">
+            {% assign collection = site.collections | where: "label",page.topic | first %}
+            {% for node in collection.docs  %}
+            {% assign image_source_length =  node.imgsrc | size  %}
+            <div class="row" >
+                <div class="card mb-3" style="max-width; 300px;" >
+                    <div class = "row g-0" >
+                        <div class ="col-md-4">
+                            {% if image_source_length  > 0 %}
+                                <img src="{{ site.baseurl }}/assets/images/{{ node.imgsrc }}" class="card-img-top img-fluid" alt="{{ node.title }}">
+                            {% endif %}
+                        </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title"><a href="{{ site.baseurl }}{{ node.url }}"> {{ node.title }} </a></h5>
+                                    <p class="card-text">  {{ node.content }}  </p>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+    {%- include footer.html -%}
+    </body>
+</html>
