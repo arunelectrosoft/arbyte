@@ -1,16 +1,12 @@
-title: Arbyte Technologies
+title: Arbyte
 email: arun.electrosoft@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Arbyte is a embedded software company driven by great minded tech experts who strive to create harmony
-  with mother nature and provide quality solutions with greater focus on process and customer delight.
-  We also train young tech savy amateur to a wizards, provides a real life embedded automation field experience.
-
-baseurl:
-# Working baseurl for github.io  baseurl: /TechMemory
-# also url for webpage till in github.io is  url: https://arunelectrosoft.github.io/
-#url: https://www.creativesaplings.com
-url: https://arunelectrosoft.github.io/
-github_username:  arunelectrosoft
+  Arbyte is an AI-powered embedded systems academy offering practical training in embedded systems,
+  automotive software, Linux, AI, Zephyr RTOS, Raspberry Pi, and Edge AI.
+baseurl: ""
+url: "https://arbyte.in"
+lang: en
+logo: /assets/images/brandicon.png
 markdown: kramdown
 
 kramdown:
@@ -21,28 +17,34 @@ kramdown:
 
 collections_dir: siteContents
 collections:
-  Company:
+  Courses:
     output: true
-    permalink: /:collection/:path
-  Services:
+    permalink: /courses/:path.html
+  Demos:
     output: true
-    permalink: /:collection/:path
+    permalink: /demos/:path.html
+  Blog:
+    output: true
+    permalink: /blog/:path.html
+  About:
+    output: true
+    permalink: /about/:path.html
+  Contact:
+    output: true
+    permalink: /contact/:path.html
   Solutions:
-    output: true
-    permalink: /:collection/:path
-  Research:
-    output: true
-    permalink: /:collection/:path
-  Careers:
-    output: true
-    permalink: /:collection/:path
-  Press:
-    output: true
-    permalink: /:collection/:path
+    output: false
+    permalink: /solutions/:path.html
 
 exclude:
+  - .github
+  - .jekyll-cache
+  - .jekyll-metadata
   - Gemfile
   - Gemfile.lock
+  - node_modules
+  - vendor
+  - tests
 
 plugins:
   - jekyll-feed

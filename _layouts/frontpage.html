@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head> 
+<head>
  {%- include head_navexpanded.html -%}
 </head>
 <body>
@@ -9,13 +9,15 @@
     <div class="card border-light w-75">
   <div class="row g-0">
     <div class="col-md-6 rounded-pill" style="width:270px">
-      <img src="{{ site.baseurl }}/assets/images/brandmotto.jpg" class="img-thumbnail rounded-start" alt="brandicon">
+      <img src="{{ site.baseurl }}/assets/images/brandmotto.jpg" class="img-thumbnail rounded-start" alt="Arbyte embedded systems training" fetchpriority="high">
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h4 class="card-title font-italic fs-2">Know About Arbyte</h4>
-        <h5 class="card-text lead fs-3">We provide creative solutions in automotive-embedded,
-            agricultural robotics and industrial automation domains </h5>
+        <h4 class="card-title font-italic fs-2">Arbyte</h4>
+        <h5 class="card-text lead fs-3">AI-Powered Embedded Systems Academy</h5>
+        <p class="card-text lead">Learn Embedded Systems, Automotive Software, Linux, AI, Zephyr RTOS, Raspberry Pi, and Edge AI.</p>
+        <a class="btn btn-primary me-2" href="{{ site.baseurl }}/courses/">Explore Courses</a>
+        <a class="btn btn-outline-primary" href="{{ site.baseurl }}/demos/">View Demos</a>
       </div>
     </div>
   </div>
@@ -23,15 +25,16 @@
     <!---  End of Company Motto --->
 
      <!---  Our Services  --->
-    <h4 class="card-title font-italic fs-2">Our Services</h4>
+    <h4 id="training" class="card-title font-italic fs-2">Training</h4>
     <div class="row row-cols-1 row-cols-md-3">
-        {% assign collection = site.collections | where: "label", "Services" | first %}
-        {% for node in collection.docs  %}
+      {% assign collection = site.collections | where: "label", "Courses" | first %}
+      {% assign training_courses = collection.docs | where: "training", true | sort: "order" %}
+      {% for node in training_courses %}
         {% assign image_source_length =  node.imgsrc | size  %}
         <div class="col mb-4">
           <div class="card bg-dark   text-white text-center  p-1">
               {% if image_source_length  > 0 %}
-                <img src="{{ site.baseurl }}/assets/images/{{ node.imgsrc }}" class="card-img-top img-thumbnail" alt="{{ node.title }}">
+                <img src="{{ site.baseurl }}/assets/images/{{ node.imgsrc }}" class="card-img-top img-thumbnail" alt="{{ node.title }}" loading="lazy" decoding="async">
               {% endif %}
             <div class="card-img-overlay text-center">
                 <h6 class="card-title"><a href="{{ site.baseurl }}{{ node.url }}" class="link-light">{{ node.title }}</a></h6>

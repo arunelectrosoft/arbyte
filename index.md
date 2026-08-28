@@ -1,4 +1,4 @@
 ---
 layout: frontpage
-title: Arbyte Technologies
+title: Arbyte
 ---

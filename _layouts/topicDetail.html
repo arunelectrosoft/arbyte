@@ -6,14 +6,15 @@
     <body>
     <div class="container-fluid mx-auto">
             {% assign collection = site.collections | where: "label",page.topic | first %}
-            {% for node in collection.docs  %}
+            {% assign topic_items = collection.docs | sort: "order" %}
+            {% for node in topic_items %}
             {% assign image_source_length =  node.imgsrc | size  %}
             <div class="row" >
                 <div class="card mb-3" style="max-width; 300px;" >
                     <div class = "row g-0" >
                         <div class ="col-md-4">
                             {% if image_source_length  > 0 %}
-                                <img src="{{ site.baseurl }}/assets/images/{{ node.imgsrc }}" class="card-img-top img-fluid" alt="{{ node.title }}">
+                                <img src="{{ site.baseurl }}/assets/images/{{ node.imgsrc }}" class="card-img-top img-fluid" alt="{{ node.title }}" loading="lazy" decoding="async">
                             {% endif %}
                         </div>
                             <div class="col-md-8">

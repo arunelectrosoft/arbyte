@@ -3,3 +3,7 @@ _site
 .jekyll-metadata
 .jekyll-cache/
 .idea
+tests/.venv/
+tests/jekyll-server.log
+test-results/
+playwright-report/
