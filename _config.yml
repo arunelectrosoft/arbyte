@@ -4,7 +4,8 @@ description: >- # this means to ignore newlines until "baseurl:"
   Arbyte is an AI-powered embedded systems academy offering practical training in embedded systems,
   automotive software, Linux, AI, Zephyr RTOS, Raspberry Pi, and Edge AI.
 baseurl: ""
-url: "https://arbyte.in"
+url: "https://arunelectrosoft.github.io/"
+github_username:  arunelectrosoft
 lang: en
 logo: /assets/images/brandicon.png
 markdown: kramdown
