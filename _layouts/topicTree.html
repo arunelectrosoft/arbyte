@@ -4,7 +4,7 @@
  {%- include head_navexpanded.html -%}
 </head>
     <body>
-    <p class="font-weight-bold"> <h3> {{ page.topic | escape }} </h3> </p>  
+    <p class="font-weight-bold"> <h3> {{ page.topic | escape }} </h3> </p>
     <div class="px-4" >
     <table class="table table-hover  ">
             <thead class="thead-dark">
@@ -15,11 +15,10 @@
                     <tr>
                         <td> <a href="{{ site.baseurl }}{{ node.url }}"> {{ node.title }} </a> </td>
                     </tr>
-                    {% endfor %}       
+                    {% endfor %}
             </tbody>
     </table>
     </div>
     {%- include footer.html -%}
     </body>
 </html>
- 

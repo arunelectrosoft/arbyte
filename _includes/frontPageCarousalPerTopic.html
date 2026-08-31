@@ -5,7 +5,7 @@
     {% assign featured_post_active_set = "notset" %}                <!-- Comment: To make decision for settign first slide active -->
     <!----------------------- Comment: Section to assign the button to slide carousel ----------------------------------->
     <div class="carousel-indicators">
-        {% for collection_variable in site.collections %} 
+        {% for collection_variable in site.collections %}
             {% for node in collection_variable.docs %}
                 {% if node.featured contains "true" %}
                     {% if  featured_post_active_set == "notset" %}
@@ -16,27 +16,27 @@
                     {% endif %}
                 {% assign slide_num = slide_num | plus: 1 %}
                 {% endif %}
-            {% endfor %}      
-        {% endfor %} 
+            {% endfor %}
+        {% endfor %}
     </div>
     <div class="carousel-inner"  >
         <!----------------------- Comment: Assigning image and caption to carousel slides ----------------------------------->
         {% assign featured_post_active_set = "notset" %}               <!-- Comment: To make decision for settign first slide active -->
-        {% for collection_variable in site.collections %}  
+        {% for collection_variable in site.collections %}
             {% for node in collection_variable.docs  %}
                 {% if node.featured contains "true" %}
                     "{{ node.url }}"
                     {% if  featured_post_active_set == "notset" %}
                         {% assign featured_post_active_set = "set" %}
                         <div class="carousel-item active" data-bs-interval="10000">
-                            <img src="{{ site.baseurl }}/assets/images/{{ node.imgsrc }}" class="d-block w-auto" alt="{{ node.title }}">
+                            <img src="{{ site.baseurl }}/assets/images/{{ node.imgsrc }}" class="d-block w-100 img-fluid" alt="{{ node.title }}" loading="eager" decoding="async">
                             <div class="carousel-caption d-none d-md-block">
                             <h5> <a href="{{ site.baseurl }}{{ node.url }}"> {{ node.title }} </a> </h5>
                             </div>
                         </div>
                     {% else %}
                         <div class="carousel-item" data-bs-interval="10000">
-                            <img src="{{ site.baseurl }}/assets/images/{{ node.imgsrc }}" class="d-block w-auto" alt={{ node.title }}>
+                            <img src="{{ site.baseurl }}/assets/images/{{ node.imgsrc }}" class="d-block w-100 img-fluid" alt="{{ node.title }}" loading="lazy" decoding="async">
                             <div class="carousel-caption d-none d-md-block">
                             <h5> <a href="{{ site.baseurl }}{{ node.url }}"> {{ node.title }} </a> </h5>
                             </div>
