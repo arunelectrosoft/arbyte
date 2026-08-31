@@ -46,13 +46,23 @@ artifacts instead of the website. It may also crash while watching the
 
 ## Browser testing
 
-The Playwright checks start a local Jekyll server, verify that each public page loads, and report broken internal links.
+For routine local work, run the compact smoke suite. It reuses a healthy local
+server when available (or starts one temporarily), checks all public pages,
+internal links, horizontal overflow, core Mermaid/card/footer rendering, and
+basic browser security. It then refreshes desktop/mobile screenshots under
+`tests/reports/` using `tests/visual_check.py`:
+
+	./tests/run_playwright_basic_tests.sh
+
+Use the comprehensive suite only when a full regression pass is needed. It
+starts a local Jekyll server, verifies every public page, and performs detailed
+diagram, placeholder, contact, footer, link, image, and security checks.
 
 The suite is generic and reusable across sites: page names and paths, the base URL, and authentication are all defined in [tests/test_config.py](tests/test_config.py). To point the tests at a different site, edit that file only; `test_site_pages.py` does not need to change.
 
 ### CLI mode (default)
 
-From Ubuntu-24.04 WSL, run all checks:
+From Ubuntu-24.04 WSL, run all comprehensive checks:
 
 	./tests/run_playwright_tests.sh all
 
