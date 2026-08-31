@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
- {%- include head_navexpanded.html -%}
+    {%- include _includes/head_navexpanded.html -%}
 </head>
-    <body>
-    <div class="container-fluid mx-auto">
-            {% assign collection = site.collections | where: "label",page.topic | first %}
-            {% assign topic_items = collection.docs | sort: "order" %}
+<body>
+    <main class="site-main container py-4 py-lg-5">
+        <header class="section-heading mb-4">
+            <span class="section-kicker">Explore Arbyte</span>
+            <h1 class="display-6 mb-2">{{ page.title }}</h1>
+        </header>
+        {% assign collection = site.collections | where: "label", page.topic | first %}
+        {% assign topic_items = collection.docs | sort: "order" %}
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
             {% for node in topic_items %}
-            {% assign image_source_length =  node.imgsrc | size  %}
-            <div class="row" >
-                <div class="card mb-3" style="max-width; 300px;" >
-                    <div class = "row g-0" >
-                        <div class ="col-md-4">
-                            {% if image_source_length  > 0 %}
-                                <img src="{{ site.baseurl }}/assets/images/{{ node.imgsrc }}" class="card-img-top img-fluid" alt="{{ node.title }}" loading="lazy" decoding="async">
-                            {% endif %}
-                        </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title"><a href="{{ site.baseurl }}{{ node.url }}"> {{ node.title }} </a></h5>
-                                    <p class="card-text">  {{ node.content }}  </p>
-                                </div>
+                {% assign diagram = "" %}
+                {% if node.imgsrc %}
+                    {% assign diagram_key = node.imgsrc | split: "." | first %}
+                    {% capture diagram_desc %}{% include assets/image_desc/{{ diagram_key }}.md %}{% endcapture %}
+                    {% assign diagram = diagram_desc | split: "```mermaid" | last | split: "```" | first | strip %}
+                {% endif %}
+                <div class="col">
+                    <article class="card content-card listing-card h-100 overflow-hidden">
+                        {% include _includes/diagram-frame.html source=diagram label=node.title variant="card" %}
+                        <div class="card-body d-flex flex-column p-4">
+                            <h2 class="card-title h5">{{ node.title }}</h2>
+                            <p class="card-text text-secondary flex-grow-1">{{ node.excerpt | strip_html | truncate: 170 }}</p>
+                            <div class="d-flex flex-wrap gap-2 mt-auto pt-2">
+                                <a href="{{ site.baseurl }}{{ node.url }}" class="btn btn-sm btn-outline-primary">View details</a>
+                                {% if page.topic == "Courses" %}
+                                    <a href="{{ site.training_preview_url }}" class="btn btn-sm btn-outline-secondary" target="_blank" rel="noopener noreferrer">Course preview</a>
+                                {% endif %}
                             </div>
                         </div>
+                    </article>
                 </div>
-            </div>
+            {% else %}
+                <div class="col-12">
+                    <div class="card content-card p-5 text-center text-secondary">Content will be available soon.</div>
+                </div>
             {% endfor %}
-    </div>
-    {%- include footer.html -%}
-    </body>
+        </div>
+    </main>
+    {%- include _includes/footer.html -%}
+</body>
 </html>

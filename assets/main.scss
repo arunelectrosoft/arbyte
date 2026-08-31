@@ -8,6 +8,9 @@
 
 /* any style customization must be before the bootstrap import */
 /* @import "custom/_variables"; */
+@import "custom/_typography";
+@import "custom/_navbar";
+@import "custom/_mermaid";
 
 @import "stylesheets/bootstrap.css";
 

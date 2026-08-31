@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
- {%- include head_navexpanded.html -%}
+    {%- include _includes/head_navexpanded.html -%}
 </head>
-    <body>
-    <p class="font-weight-bold"> <h3> {{ page.topic | escape }} </h3> </p>
-    <div class="px-4" >
-    <table class="table table-hover  ">
-            <thead class="thead-dark">
-            </thead>
-            <tbody>
-                    {% assign collection = site.collections | where: "label",page.topic | first %}
-                    {% for node in collection.docs reversed %}
-                    <tr>
-                        <td> <a href="{{ site.baseurl }}{{ node.url }}"> {{ node.title }} </a> </td>
-                    </tr>
-                    {% endfor %}
-            </tbody>
-    </table>
-    </div>
-    {%- include footer.html -%}
-    </body>
+<body>
+    <main class="site-main container py-4 py-lg-5">
+        <header class="section-heading mb-4">
+            <span class="section-kicker">Browse</span>
+            <h1 class="display-6">{{ page.topic | escape }}</h1>
+        </header>
+        <div class="card content-card overflow-hidden">
+            <div class="list-group list-group-flush">
+                {% assign collection = site.collections | where: "label", page.topic | first %}
+                {% for node in collection.docs reversed %}
+                    <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-3 p-lg-4" href="{{ site.baseurl }}{{ node.url }}">
+                        <span class="fw-semibold">{{ node.title }}</span>
+                        <span aria-hidden="true">&rarr;</span>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+    {%- include _includes/footer.html -%}
+</body>
 </html>

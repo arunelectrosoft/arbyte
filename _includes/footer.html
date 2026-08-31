@@ -1,41 +1,52 @@
-<!-- Footer Start -->
-<div class="row bg-secondary">
-    <div class="container bg-secondary">
-        <div class="row bg-secondary">
-            <div class="col-md-5 bg-secondary">
-                <div class="fw-bold p-1 bg-secondary text-white"> Locate Us </div>
-                <div class="p-1 bg-secondary text-white">  70, Thittamalai, Nambiyur, Erode, Tamilnadu - 648458 , India</div>
-                <div class="p-1 bg-secondary text-white">+91-9500459614</div>
-                <div class="p-1 bg-secondary text-white">info@arbyte.dev</div>
+<footer class="site-footer" aria-labelledby="footer-title">
+    <div class="container py-5">
+        <div class="row g-4 g-lg-5">
+            <div class="col-lg-4">
+                <a class="footer-brand" href="{{ site.baseurl }}/index.html" id="footer-title">Arbyte</a>
+                <p class="footer-summary mt-3 mb-3">Practical embedded systems, Linux, RTOS, automotive software, and Edge AI training for engineers.</p>
+                <a class="footer-inline-link" href="{{ site.training_preview_url }}" target="_blank" rel="noopener noreferrer">Explore training previews <span aria-hidden="true">&nearr;</span></a>
             </div>
-            <div class="col-md-7">
-                <div class="row bg-secondary">
-                    <div class="col-md-6 bg-secondary">
-                        <div class="fw-bold p-1 bg-secondary text-white"> Quick Links </div>
-                        <div><a href="{{ site.baseurl }}/index.html" class="bg-secondary link-light">Home</a></div>
-                        <div><a href="{{ site.baseurl }}/courses/" class="bg-secondary link-light">Courses</a></div>
-                        <div><a href="{{ site.baseurl }}/demos/" class="bg-secondary link-light">Demos</a></div>
-                        <div><a href="{{ site.baseurl }}/blog/" class="bg-secondary link-light">Blog</a></div>
-                        <div><a href="{{ site.baseurl }}/about/" class="bg-secondary link-light">About</a></div>
-                        <div><a href="{{ site.baseurl }}/contact/" class="bg-secondary link-light">Contact</a></div>
-                    </div>
-                   <div class="col-md-6 bg-secondary">
-                       <div class="fw-bold p-1 bg-secondary text-white"> Enquiries </div>
-                       <div class="fst-italic p-1 bg-secondary text-white">Please email us at info@arbyte.dev
-                       with your query and we will get back to you at the earliest </div>
-                    </div>
+
+            <div class="col-6 col-lg-2">
+                <h2 class="footer-heading">Learn</h2>
+                <nav aria-label="Footer learning links">
+                    <ul class="footer-links">
+                        <li><a href="{{ site.baseurl }}/courses/">Courses</a></li>
+                        <li><a href="{{ site.baseurl }}/demos/">Demos</a></li>
+                        <li><a href="{{ site.baseurl }}/blog/">Insights</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col-6 col-lg-2">
+                <h2 class="footer-heading">Arbyte</h2>
+                <nav aria-label="Footer company links">
+                    <ul class="footer-links">
+                        <li><a href="{{ site.baseurl }}/about/">About</a></li>
+                        <li><a href="{{ site.baseurl }}/contact/">Contact</a></li>
+                        <li><a href="https://github.com/arunelectrosoft" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">&nearr;</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="footer-cta">
+                    <span class="footer-eyebrow">India · Tamil Nadu · Coimbatore</span>
+                    <h2 class="h5 mt-2">Build practical engineering skills</h2>
+                    <p class="mb-3">Discuss classroom training, team programs, or technical collaboration with Arbyte.</p>
+                    <a class="btn btn-light" href="{{ site.baseurl }}/contact/ContactUs.html">Start a conversation</a>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container copyright bg-secondary">
-        <div class="row">
-            <div class="col-md-6 bg-secondary text-white">
-                <p> <a href="https://arbyte.in">Arbyte</a>, All Rights Reserved.</p>
-            </div>
+
+        <div class="footer-bottom mt-5 pt-3">
+            <small>&copy; {{ site.time | date: "%Y" }} Arbyte. All rights reserved.</small>
+            <small>AI-powered embedded systems academy</small>
         </div>
     </div>
-</div>
-<!-- Footer End -->
+</footer>
 <!--- JS --->
-<script src="{{ site.baseurl }}/assets/javascripts/bootstrap.bundle.min.js"></script>
+<script defer src="{{ site.baseurl }}/assets/javascripts/bootstrap.bundle.min.js"></script>
+<!--- Mermaid.js: renders <div class="mermaid"> code blocks as responsive vector (SVG) diagrams --->
+<script defer src="{{ site.baseurl }}/assets/javascripts/mermaid.min.js"></script>
+<script defer src="{{ site.baseurl }}/assets/javascripts/mermaid-runtime.js"></script>

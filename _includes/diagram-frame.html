@@ -1,0 +1,11 @@
+{% assign diagram_source = include.source | strip %}
+{% assign diagram_variant = include.variant | default: "card" %}
+<div class="diagram-frame diagram-frame--{{ diagram_variant }} bg-white" role="img" aria-label="{{ include.label | default: 'Diagram' | escape }}">
+  {% if diagram_source != empty %}
+    <div class="mermaid">
+{{ diagram_source }}
+    </div>
+  {% else %}
+    <div class="diagram-placeholder" aria-label="Diagram not available"></div>
+  {% endif %}
+</div>

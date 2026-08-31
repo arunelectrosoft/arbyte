@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
- {%- include head_navexpanded.html -%}
+    {%- include _includes/head_navexpanded.html -%}
 </head>
 <body>
-    <div class="col-xs-12 col-sm-12 col-md-9">
-    <p class="container text-sm-left">
-        {{page.content}}
-    </p>
-    </div>
- {%- include footer.html -%}
+    <main class="site-main container py-4 py-lg-5">
+        <article class="card content-card detail-card">
+            <div class="card-body article-content p-4 p-lg-5">
+                {{ page.content }}
+            </div>
+        </article>
+    </main>
+    {%- include _includes/footer.html -%}
 </body>
 </html>

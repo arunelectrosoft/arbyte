@@ -2,10 +2,11 @@ title: Arbyte
 email: arun.electrosoft@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Arbyte is an AI-powered embedded systems academy offering practical training in embedded systems,
-  automotive software, Linux, AI, Zephyr RTOS, Raspberry Pi, and Edge AI.
+  industry ready software, Linux, AI, Zephyr RTOS, Raspberry Pi, and Edge AI.
 baseurl: ""
 url: "https://arunelectrosoft.github.io/"
 github_username:  arunelectrosoft
+training_preview_url: "https://github.com/arunelectrosoft/arbyte-training-preview"
 lang: en
 logo: /assets/images/brandicon.png
 markdown: kramdown
@@ -17,6 +18,13 @@ kramdown:
     bold_every: 5
 
 collections_dir: siteContents
+
+# Empty string points Liquid's {% include %} tag at the site source root
+# (instead of the default _includes/ only) so templates can pull mermaid
+# diagram source directly from assets/image_desc/*.md. Existing includes
+# from _includes/ must therefore be referenced as "_includes/<file>".
+includes_dir: ""
+
 collections:
   Courses:
     output: true

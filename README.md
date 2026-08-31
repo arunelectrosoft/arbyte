@@ -1,12 +1,12 @@
 # Arbyte Training Academy
 
-Arbyte Training Academy is an AI-powered embedded-systems learning platform. It provides practical, industry-relevant training and project experience for engineers developing modern embedded and automotive software.
+Arbyte Training Academy is an AI-powered embedded-systems learning platform. It provides practical, industry-relevant training and project experience for engineers developing modern embedded and industry ready software.
 
 ## Learning areas
 
 The academy's course content covers:
 
-- **Automotive Embedded Systems Training** — ECU development, functional safety, security, AUTOSAR fundamentals, Linux, and QNX.
+- **Industrial Embedded Control Systems** — Electronic Control Unit (ECU) development, functional safety, security, AUTOSAR fundamentals, Linux, and QNX.
 - **Embedded systems** — microcontrollers, embedded Linux, connectivity, secure boot, firmware-over-the-air updates, and engineering practices.
 - **Zephyr RTOS and Edge AI** — real-time development with Zephyr RTOS, Raspberry Pi, Linux, AI, and Edge AI.
 
@@ -29,12 +29,20 @@ Page content is maintained in the `siteContents` collections. Layouts are in `_l
 
 ## Local development
 
-Install the Ruby dependencies, then serve the site locally:
+Install the Ruby dependencies, then serve the site locally from the repository
+root. On Ubuntu-24.04 WSL, use the launcher below; it supplies the correct
+source/config paths and disables the unreliable `/mnt` filesystem watcher:
 
-	 bundle install
-	 bundle exec jekyll serve
+	bundle install
+	./serve_site.sh
 
-Jekyll rebuilds the site when source files change. The generated site is written to `_site`.
+The generated site is written to `_site`. Restart the launcher after editing
+source files because WSL file watching is disabled deliberately.
+
+Do not run `bundle exec jekyll server` from `tests/`. Jekyll otherwise treats
+that folder as the site source (`Configuration file: none`) and serves test
+artifacts instead of the website. It may also crash while watching the
+`tests/.venv/lib` and `tests/.venv/lib64` links as the same directory.
 
 ## Browser testing
 

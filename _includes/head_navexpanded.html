@@ -2,27 +2,34 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!---  HTML responsive webpage configuration starting  --->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 {% seo %}
 <link rel="stylesheet" href="{{ site.baseurl }}/assets/main.css">
 {% assign links = site.data.navigation %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="{{ site.baseurl }}/index.html">
-  <img src="{{ site.baseurl }}/assets/images/brandicon.png" class="img-fluid" height="40" alt="Arbyte logo">
-  </a>
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse " id="navbarSupportedContent">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item">
-          <a class="nav-link" href="{{ site.baseurl }}/index.html">Home</a>
-      </li>
-      {% for item in site.data.navigation %}
-      <li class="nav-item" >
-      <a class="nav-link" href= "{{ site.baseurl }}{{ item.url }}" > {{ item.title }} </a>
-      </li>
-      {% endfor %}
-    </ul>
+  <div class="container">
+    <a class="navbar-brand" href="{{ site.baseurl }}/index.html">
+      {% capture brandicon_desc %}{% include assets/image_desc/brandicon.md %}{% endcapture %}
+      {% assign brandicon_diagram = brandicon_desc | split: "```mermaid" | last | split: "```" | first | strip %}
+      <span class="brand-icon">
+        {% include _includes/diagram-frame.html source=brandicon_diagram label="Arbyte logo" variant="brand" %}
+      </span>
+      <span class="brand-name">Arbyte</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link{% if page.url == '/index.html' or page.url == '/' %} active{% endif %}" href="{{ site.baseurl }}/index.html">Home</a>
+        </li>
+        {% for item in site.data.navigation %}
+        <li class="nav-item">
+          <a class="nav-link{% if page.url contains item.url %} active{% endif %}" href="{{ site.baseurl }}{{ item.url }}">{{ item.title }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 </nav>
-{%- include google-analytics.html -%}

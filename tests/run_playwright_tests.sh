@@ -25,6 +25,11 @@ SERVER_PID=""
 MODE="cli"
 PAGE_SELECTION="all"
 
+# Corporate proxy settings must never intercept requests to the local test
+# server. Preserve any existing exclusions while adding both local hostnames.
+export NO_PROXY="127.0.0.1,localhost${NO_PROXY:+,$NO_PROXY}"
+export no_proxy="127.0.0.1,localhost${no_proxy:+,$no_proxy}"
+
 cleanup() {
   if [[ -n "$SERVER_PID" ]] && kill -0 "$SERVER_PID" 2>/dev/null; then
     kill "$SERVER_PID"
@@ -77,17 +82,34 @@ if [[ "$MODE" == "gui" ]]; then
   echo "Selected pages: $PAGE_SELECTION"
 fi
 
-bundle exec jekyll serve --host "$HOST" --port "$PORT" --no-watch > "$TEST_DIR/jekyll-server.log" 2>&1 &
+# Explicit paths keep Jekyll anchored at the repository root even when this
+# script is invoked from tests/. --no-watch also prevents Listen from scanning
+# tests/.venv, whose lib and lib64 entries resolve to the same directory.
+bundle exec jekyll serve \
+  --source "$ROOT_DIR" \
+  --destination "$ROOT_DIR/_site" \
+  --config "$ROOT_DIR/_config.yml" \
+  --host "$HOST" \
+  --port "$PORT" \
+  --no-watch > "$TEST_DIR/jekyll-server.log" 2>&1 &
 SERVER_PID=$!
 
-for _ in {1..30}; do
-  if curl --silent --fail "$BASE_URL/index.html" > /dev/null; then
+# First-run generation can take well over 30s on slower/networked
+# filesystems (e.g. a Windows drive mounted into WSL), so allow up to two
+# minutes before giving up.
+for _ in {1..120}; do
+  if curl --silent --fail --noproxy "*" "$BASE_URL/index.html" > /dev/null; then
     break
+  fi
+  if ! kill -0 "$SERVER_PID" 2>/dev/null; then
+    echo "Jekyll server exited before becoming ready:"
+    cat "$TEST_DIR/jekyll-server.log"
+    exit 1
   fi
   sleep 1
 done
 
-if ! curl --silent --fail "$BASE_URL/index.html" > /dev/null; then
+if ! curl --silent --fail --noproxy "*" "$BASE_URL/index.html" > /dev/null; then
   echo "Jekyll server did not start. See $TEST_DIR/jekyll-server.log"
   exit 1
 fi
