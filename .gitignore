@@ -7,3 +7,8 @@ tests/.venv/
 tests/jekyll-server.log
 test-results/
 playwright-report/
+
+# Python bytecode and cache directories (at any depth)
+__pycache__/
+*.py[cod]
+*$py.class
